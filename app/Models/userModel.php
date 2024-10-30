@@ -9,6 +9,7 @@ class userModel extends Model
 {
     use HasFactory;
     protected $table = 'user'; // target nama tabel
+    protected $primaryKey = 'id';
     protected $fillable = [
         'nim',
         'status'
