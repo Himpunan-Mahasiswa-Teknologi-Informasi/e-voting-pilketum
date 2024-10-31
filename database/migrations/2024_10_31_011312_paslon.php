@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user', function (Blueprint $table) {
-            $table->id(); // id_user 
-            $table->string('nim'); // nim
-            $table->boolean('status')->default(false); // status vote dengan default adalah false
-            $table->timestamps(); // timestaps
+        Schema::create('paslon', function (Blueprint $table) {
+            $table->id('id_paslon');
+            $table->string('no_urut');
+            $table->text('visi');
+            $table->text('misi');
+            $table->string('foto');
+            $table->timestamps();
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('paslon');
     }
 };

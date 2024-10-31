@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('paslon', function (Blueprint $table) {
-            $table->id();
-            $table->string('no_urut');
-            $table->text('visi');
-            $table->text('misi');
-            $table->string('foto');
-            $table->timestamps();
+        Schema::create('mahasiswa', function (Blueprint $table) {
+            $table->id('id_mahasiswa'); // id_mahasiswa 
+            $table->string('nim'); // nim
+            $table->boolean('status')->default(false); // status vote dengan default adalah false
+            $table->timestamps(); // timestaps
         });
     }
 
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('paslon');
+        Schema::dropIfExists('mahasiswa');
     }
 };

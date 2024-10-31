@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Paslon;
 
 class Vote extends Model
 {
@@ -16,11 +17,13 @@ class Vote extends Model
         'id_user'
     ];
 
-    public function paslon() {
-        return $this->belongsTo();
+    public function paslon()
+    {
+        return $this->belongsTo(Paslon::class, 'id_paslon', 'id_paslon');
     }
 
-    public function user() {
-        return $this->belongsTo();
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id_mahasiswa');
     }
 }

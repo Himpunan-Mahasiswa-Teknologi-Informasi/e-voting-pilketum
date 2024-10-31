@@ -9,13 +9,13 @@ class Cake extends Model
 {
     use HasFactory;
 
-    protected $table = 'cake';
-    protected $primary_key = 'id_cake';
+    protected $table = 'cakes';
+    protected $primaryKey = 'id_cake';
 
     protected $fillable = ['id_paslon', 'nama', 'foto', 'deskripsi', 'prodi', 'kelas'];
 
     public function paslon()
     {
-        return $this->belongsTo('');
+        return $this->belongsTo(Paslon::class, 'id_paslon', 'id_paslon');
     }
 }
