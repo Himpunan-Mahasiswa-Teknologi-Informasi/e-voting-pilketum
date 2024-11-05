@@ -9,7 +9,7 @@ class Cake extends Model
 {
     use HasFactory;
 
-    protected $table = 'cakes';
+    protected $table = 'cake';
     protected $primaryKey = 'id_cake';
 
     protected $fillable = ['id_paslon', 'nama', 'foto', 'deskripsi', 'prodi', 'kelas'];
@@ -17,5 +17,9 @@ class Cake extends Model
     public function paslon()
     {
         return $this->belongsTo(Paslon::class, 'id_paslon', 'id_paslon');
+    }
+
+    public function pengalaman() {
+        return $this->hasMany(Pengalaman::class);
     }
 }
