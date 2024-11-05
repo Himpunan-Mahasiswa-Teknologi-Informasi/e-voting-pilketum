@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('vote', function (Blueprint $table) {
             $table->id('id_vote');
             $table->unsignedBigInteger('id_paslon')->index();
-            $table->unsignedBigInteger('id_user')->index();
+            $table->unsignedBigInteger('id_mahasiswa')->index();
             $table->timestamps();
 
             $table->foreign('id_paslon')->references('id_paslon')->on('paslon');
-            $table->foreign('id_user')->references('id_user')->on('user');
+            $table->foreign('id_mahasiswa')->references('id_mahasiswa')->on('mahasiswa');
         });
     }
 

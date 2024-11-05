@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('kelas');
             $table->timestamps();
 
-            $table->foreign('id_paslon')->references('id_level')->on('paslon');
+            $table->foreign('id_paslon')->references('id_paslon')->on('paslon');
         });
     }
 
