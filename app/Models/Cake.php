@@ -18,4 +18,8 @@ class Cake extends Model
     {
         return $this->belongsTo(Paslon::class, 'id_paslon', 'id_paslon');
     }
+
+    public function pengalaman() {
+        return $this->hasMany(Pengalaman::class);
+    }
 }

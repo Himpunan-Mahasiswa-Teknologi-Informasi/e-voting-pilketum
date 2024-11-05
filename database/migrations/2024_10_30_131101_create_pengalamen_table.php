@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('jenis', ['in', 'out']);
             $table->timestamps();
 
-            $table->foreign('id_cake')->references('id_cake')->on('cakes');
+            $table->foreign('id_cake')->references('id_cake')->on('cake');
         });
     }
 
