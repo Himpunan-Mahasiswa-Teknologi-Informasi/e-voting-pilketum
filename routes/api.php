@@ -28,3 +28,4 @@ Route::post('/vote_admin', [VoteController::class, 'store']); // menambahkan vot
 Route::post('/vote_edit/{id}', [VoteController::class, 'edit']); // edit vote
 Route::delete('/vote/{id}', [VoteController::class, 'destroy']); // hapus vote
 Route::get('/paslon-votes', [VoteController::class, 'hasil_paslon']); // cek hasil vote
+Route::get('/detail-votes', [VoteController::class, 'show_all']); // cek detail vote

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class VoteController extends Controller
 {
+    // vote dari mahasiswa
     public function store_mahasiswa(Request $request)
     {
         $request->validate([
@@ -68,6 +69,21 @@ class VoteController extends Controller
         $vote->save();
 
         return response()->json(['message' => 'Vote submitted successfully'], 200);
+    }
+
+    /**
+     * Display vote all.
+     */
+    public function show_all()
+    {
+        $votes = Vote::with('mahasiswa:id_mahasiswa,nim') // Load nim field from mahasiswa
+            ->select('id_paslon', 'id_mahasiswa', 'created_at', 'updated_at') // Select relevant fields
+            ->get();
+
+        // Return result in JSON format
+        return response()->json([
+            'data' => $votes
+        ], 200);
     }
 
     /**
