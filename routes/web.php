@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaslonController;
 use App\Http\Controllers\CakeController;
 use App\Http\Controllers\PengalamanController;
+use App\Http\Controllers\VoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,6 @@ Route::get('/pengalaman/{id}/show', [PengalamanController::class, 'show']);
 Route::get('/pengalaman/{id}/edit', [PengalamanController::class, 'edit']);
 Route::post('/pengalaman/{id}/update', [PengalamanController::class, 'update']);
 Route::delete('/pengalaman/{id}/delete', [PengalamanController::class, 'destroy']);
+
+// route untuk mahasiswa voting
+// Route::post('/vote', [VoteController::class, 'store_mahasiswa']);
