@@ -9,7 +9,7 @@ class Cake extends Model
 {
     use HasFactory;
 
-    protected $table = 'cakes';
+    protected $table = 'cake';
     protected $primaryKey = 'id_cake';
 
     protected $fillable = ['id_paslon', 'nama', 'foto', 'deskripsi', 'prodi', 'kelas'];
