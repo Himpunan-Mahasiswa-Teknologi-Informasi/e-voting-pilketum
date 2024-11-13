@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemilihan Ketua Umum HMTI</title>
+    <style>
+        :root {
+            --primary-color: #2c5282;
+            --secondary-color: #4299e1;
+            --background-color: #f7fafc;
+            --text-color: #2d3748;
+            --card-background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/placeholder.svg?height=400&width=1200');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin-right: 1rem;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header-text h1 {
+            font-size: 2rem;
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+        }
+
+        .header-text h2 {
+            font-size: 1.2rem;
+            font-weight: normal;
+            line-height: 1.2;
+        }
+
+        .header-description {
+            max-width: 800px;
+            margin: 1rem auto;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .candidates {
+            display: grid;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .candidate-card {
+            background: var(--card-background);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .candidate-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .candidate-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .candidate-content {
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+        }
+
+        .candidate-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .candidate-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .vision-mission h3 {
+            color: var(--primary-color);
+            margin: 1rem 0 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .vision-mission ol {
+            padding-left: 1.5rem;
+        }
+
+        .video-section {
+            background: var(--card-background);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-placeholder {
+            background: var(--background-color);
+            width: 100%;
+            height: 400px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .voting-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .voting-options {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .vote-card {
+            background: var(--card-background);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            width: 220px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .vote-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .vote-card.selected {
+            outline: 3px solid var(--primary-color);
+        }
+
+        .vote-check {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: var(--primary-color);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .vote-card.selected .vote-check {
+            opacity: 1;
+        }
+
+        .vote-button {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 3rem;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .vote-button:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .candidate-content {
+                grid-template-columns: 1fr;
+            }
+
+            .candidate-image {
+                margin: 0 auto;
+            }
+
+            .voting-options {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="/placeholder.svg?height=80&width=80" alt="Logo HMTI" class="logo">
+            <div class="header-text">
+                <h1>PEMILIHAN KETUA UMUM</h1>
+                <h2>Himpunan Mahasiswa Teknologi Informasi</h2>
+            </div>
+        </div>
+        <p class="header-description">
+            Pemilihan Ketua Umum (Pilketum) Himpunan Mahasiswa Teknologi Informasi merupakan ajang demokrasi mahasiswa untuk memilih ketua umum baru yang akan memimpin selama satu periode. Pilketum menjadi sarana regenerasi kepemimpinan di HMTI demi kemajuan himpunan, pengembangan anggota, serta terciptanya lingkungan organisasi yang lebih dinamis dan progresif.
+        </p>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title">CALON KETUA UMUM</h2>
+        
+        <section class="candidates">
+            <article class="candidate-card">
+                <header class="candidate-header">
+                    KANDIDAT 1
+                </header>
+                <div class="candidate-content">
+                    <img src="/placeholder.svg?height=150&width=150" alt="Foto Ghoffar Abdul Ja'far" class="candidate-image">
+                    <div class="candidate-info">
+                        <h3>Ghoffar Abdul Ja'far</h3>
+                        <p>D-IV Teknik Informatika</p>
+                        
+                        <div class="vision-mission">
+                            <h3>VISI</h3>
+                            <p>Menciptakan ekosistem pada Himpunan Mahasiswa Teknologi Informasi yang inovatif dan kreatif sebagai sarana kolaborasi, penyalur aspirasi, serta wadah peningkatan kompetensi mahasiswa Jurusan Teknologi Informasi.</p>
+                            
+                            <h3>MISI</h3>
+                            <ol>
+                                <li>Membangun hubungan yang kuat antar anggota Himpunan Mahasiswa Teknologi Informasi dalam peningkatan kompetensi untuk menciptakan ekosistem organisasi yang inovatif dan kreatif.</li>
+                                <li>Sebagai sarana kolaborasi bagi Mahasiswa Jurusan Teknologi Informasi yang adaptif dalam melaksanakan program kerja dan agenda Himpunan Mahasiswa Teknologi Informasi agar tetap relevan dengan perkembangan zaman.</li>
+                                <li>Sebagai sarana penyalur aspirasi yang efektif bagi Mahasiswa Jurusan Teknologi Informasi.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="candidate-card">
+                <header class="candidate-header">
+                    KANDIDAT 2
+                </header>
+                <div class="candidate-content">
+                    <img src="/placeholder.svg?height=150&width=150" alt="Foto Ramadhan Maulana A." class="candidate-image">
+                    <div class="candidate-info">
+                        <h3>Ramadhan Maulana A.</h3>
+                        <p>D-IV Sistem Informasi Bisnis</p>
+                        
+                        <div class="vision-mission">
+                            <h3>VISI</h3>
+                            <p>Menciptakan ekosistem pada Himpunan Mahasiswa Teknologi Informasi yang inovatif dan kreatif sebagai sarana kolaborasi, penyalur aspirasi, serta wadah peningkatan kompetensi mahasiswa Jurusan Teknologi Informasi.</p>
+                            
+                            <h3>MISI</h3>
+                            <ol>
+                                <li>Membangun hubungan yang kuat antar anggota Himpunan Mahasiswa Teknologi Informasi dalam peningkatan kompetensi untuk menciptakan ekosistem organisasi yang inovatif dan kreatif.</li>
+                                <li>Sebagai sarana kolaborasi bagi Mahasiswa Jurusan Teknologi Informasi yang adaptif dalam melaksanakan program kerja dan agenda Himpunan Mahasiswa Teknologi Informasi agar tetap relevan dengan perkembangan zaman.</li>
+                                <li>Sebagai sarana penyalur aspirasi yang efektif bagi Mahasiswa Jurusan Teknologi Informasi.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="video-section">
+            <h2 class="section-title">VIDEO ORASI EKSTERNAL CALON KANDIDAT KETUA UMUM</h2>
+            <div class="video-placeholder">
+                Video Player
+            </div>
+        </section>
+
+        <section class="voting-section">
+            <div class="voting-options">
+                <div class="vote-card" onclick="selectCandidate(1)">
+                    <img src="/placeholder.svg?height=150&width=150" alt="Kandidat 1" class="candidate-image">
+                    <h3>Ghoffar Abdul Ja'far</h3>
+                    <p>D-IV Teknik Informatika</p>
+                    <div class="vote-check">✓</div>
+                </div>
+                <div class="vote-card" onclick="selectCandidate(2)">
+                    <img src="/placeholder.svg?height=150&width=150" alt="Kandidat 2" class="candidate-image">
+                    <h3>Ramadhan Maulana A.</h3>
+                    <p>D-IV Sistem Informasi Bisnis</p>
+                    <div class="vote-check">✓</div>
+                </div>
+            </div>
+            <button class="vote-button" onclick="submitVote()">VOTE</button>
+        </section>
+    </main>
+
+    <script>
+        let selectedCandidate = null;
+
+        function selectCandidate(candidateNumber) {
+            selectedCandidate = candidateNumber;
+            document.querySelectorAll('.vote-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelectorAll('.vote-card')[candidateNumber - 1].classList.add('selected');
+        }
+
+        function submitVote() {
+            if (selectedCandidate) {
+                alert(`Anda telah memilih Kandidat ${selectedCandidate}`);
+                // Here you would typically send the vote to a server
+            } else {
+                alert('Silakan pilih kandidat terlebih dahulu');
+            }
+        }
+    </script>
+</body>
+</html>
